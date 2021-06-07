@@ -16,6 +16,10 @@ class CategoriesRepository {
     const category = new Category(name, description, new Date());
     this.categories.push(category);
   }
+
+  list(): Array<Category> {
+    return this.categories;
+  }
 }
 
 export { CategoriesRepository };
