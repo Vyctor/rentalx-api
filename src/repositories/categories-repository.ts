@@ -12,13 +12,17 @@ class CategoriesRepository {
     this.categories = [];
   }
 
-  create({ name, description }: ICreateCategoryDTO): void {
+  public create({ name, description }: ICreateCategoryDTO): void {
     const category = new Category(name, description, new Date());
     this.categories.push(category);
   }
 
-  list(): Array<Category> {
+  public list(): Array<Category> {
     return this.categories;
+  }
+
+  public findByName(name: string): Category {
+    return this.categories.find((category) => category.name === name);
   }
 }
 
