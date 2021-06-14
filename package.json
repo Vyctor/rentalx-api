@@ -6,7 +6,8 @@
     "license": "MIT",
     "scripts": {
         "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules --respawn src/server.ts",
-        "docker-first-run": "docker build -t rentx .  && docker run -p 3333:3333 rentx"
+        "start": "docker-compose up -d",
+        "docker-compose": "docker-compose up"
     },
     "dependencies": {
         "csv-parse": "^4.15.4",
