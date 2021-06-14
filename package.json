@@ -5,7 +5,8 @@
     "author": "Vyctor <dev.vyctor@gmail.com>",
     "license": "MIT",
     "scripts": {
-        "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules --respawn src/server.ts"
+        "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules --respawn src/server.ts",
+        "docker-first-run": "docker build -t rentx .  && docker run -p 3333:3333 rentx"
     },
     "dependencies": {
         "csv-parse": "^4.15.4",
