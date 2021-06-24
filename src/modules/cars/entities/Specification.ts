@@ -1,9 +1,21 @@
-import { Entity } from 'typeorm';
+import { Entity, PrimaryColumn, Column } from 'typeorm';
 import { v4 as uuidV4 } from 'uuid';
 
 @Entity('specifications')
 class Specification {
-  constructor(public name: string, public description: string, public created_at: Date, public id?: string) {
+  @PrimaryColumn()
+  public id?: string;
+
+  @Column()
+  public name: string;
+
+  @Column()
+  public description: string;
+
+  @Column()
+  public created_at: Date;
+
+  constructor() {
     if (!this.id) {
       this.id = uuidV4();
     }
