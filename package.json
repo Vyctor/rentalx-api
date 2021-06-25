@@ -10,7 +10,7 @@
         "typeorm": "ts-node-dev ./node_modules/typeorm/cli"
     },
     "dependencies": {
-        "bcrypt": "^5.0.1",
+        "bcryptjs": "^2.4.3",
         "csv-parse": "^4.15.4",
         "express": "^4.17.1",
         "jsonwebtoken": "^8.5.1",
@@ -23,7 +23,7 @@
         "uuid": "^8.3.2"
     },
     "devDependencies": {
-        "@types/bcrypt": "^5.0.0",
+        "@types/bcryptjs": "^2.4.2",
         "@types/express": "^4.17.12",
         "@types/jsonwebtoken": "^8.5.2",
         "@types/multer": "^1.4.5",
