@@ -16,8 +16,7 @@ class User {
   @Column()
   public isAdmin: boolean;
   @CreateDateColumn()
-  public createdAt: Date;
-
+  public created_at: Date;
   constructor() {
     if (!this.id) {
       this.id = uuidV4();
