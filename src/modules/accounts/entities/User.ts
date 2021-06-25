@@ -8,8 +8,6 @@ class User {
   @Column()
   public name: string;
   @Column()
-  public username: string;
-  @Column()
   public password: string;
   @Column()
   public email: string;
