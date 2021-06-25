@@ -1,4 +1,4 @@
-import { compare } from 'bcrypt';
+import * as bcrypt from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
 import { inject, injectable } from 'tsyringe';
 
@@ -33,7 +33,7 @@ class AuthenticateUserUseCase {
     }
 
     // Senha está correta?
-    const passwordMatch = await compare(user.password, password);
+    const passwordMatch = await bcrypt.compare(user.password, password);
 
     if (!passwordMatch) {
       throw new Error('E-mail or password incorrect!');
