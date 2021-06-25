@@ -9,7 +9,7 @@ class AuthenticateUserController {
 
     const authenticateUserUseCase = container.resolve(AuthenticateUserUseCase);
 
-    const token = authenticateUserUseCase.execute({ password, email });
+    const token = await authenticateUserUseCase.execute({ password, email });
 
     return response.json(token);
   }

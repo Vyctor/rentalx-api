@@ -33,7 +33,9 @@ class AuthenticateUserUseCase {
     }
 
     // Senha está correta?
-    const passwordMatch = await bcrypt.compare(user.password, password);
+    const passwordMatch = await bcrypt.compare(password, user.password);
+
+    console.log('password match: ', passwordMatch);
 
     if (!passwordMatch) {
       throw new Error('E-mail or password incorrect!');
@@ -46,13 +48,16 @@ class AuthenticateUserUseCase {
     });
 
     // Retornar resposta
-    return {
+
+    const response: IResponse = {
       user: {
         name: user.name,
         email: user.email,
       },
       token,
     };
+
+    return response;
   }
 }
 
