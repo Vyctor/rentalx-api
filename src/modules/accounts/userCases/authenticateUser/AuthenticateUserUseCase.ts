@@ -3,6 +3,7 @@ import { sign } from 'jsonwebtoken';
 import { inject, injectable } from 'tsyringe';
 
 import { UsersRepository } from '../../repositories/implementations/UsersRepository';
+import { AppError } from '../../../../errors/AppError';
 
 interface IRequest {
   email: string;
@@ -29,7 +30,7 @@ class AuthenticateUserUseCase {
     const user = await this.userRepository.findByEmail(email);
 
     if (!user) {
-      throw new Error('E-mail or password incorrect!');
+      throw new AppError('E-mail or password incorrect!');
     }
 
     // Senha está correta?
@@ -38,7 +39,7 @@ class AuthenticateUserUseCase {
     console.log('password match: ', passwordMatch);
 
     if (!passwordMatch) {
-      throw new Error('E-mail or password incorrect!');
+      throw new AppError('E-mail or password incorrect!');
     }
 
     // Gerar JWT

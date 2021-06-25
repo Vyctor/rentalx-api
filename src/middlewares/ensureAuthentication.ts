@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import { verify } from 'jsonwebtoken';
 
+import { AppError } from '../errors/AppError';
 import { UsersRepository } from '../modules/accounts/repositories/implementations/UsersRepository';
 
 export async function ensureAuthentication(request: Request, response: Response, next: NextFunction): Promise<void> {
@@ -10,7 +11,7 @@ export async function ensureAuthentication(request: Request, response: Response,
   }
 
   if (!authHeader) {
-    throw new Error('Token is missing!');
+    throw new AppError('Token is missing!', 401);
   }
 
   const [, token] = authHeader.split(' ');
@@ -22,11 +23,11 @@ export async function ensureAuthentication(request: Request, response: Response,
     const user = await usersRepository.findById(userId);
 
     if (!user) {
-      throw new Error('User doesnt exists!');
+      throw new AppError('User doesnt exists!', 401);
     }
 
     next();
   } catch {
-    throw new Error('Invalid token!');
+    throw new AppError('Invalid token!', 401);
   }
 }
