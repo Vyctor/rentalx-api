@@ -2,8 +2,8 @@ import * as bcrypt from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
 import { inject, injectable } from 'tsyringe';
 
-import { UsersRepository } from '../../repositories/implementations/UsersRepository';
 import { AppError } from '../../../../errors/AppError';
+import { UsersRepository } from '../../repositories/implementations/UsersRepository';
 
 interface IRequest {
   email: string;
@@ -35,8 +35,6 @@ class AuthenticateUserUseCase {
 
     // Senha está correta?
     const passwordMatch = await bcrypt.compare(password, user.password);
-
-    console.log('password match: ', passwordMatch);
 
     if (!passwordMatch) {
       throw new AppError('E-mail or password incorrect!');
