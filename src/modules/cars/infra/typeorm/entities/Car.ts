@@ -1,5 +1,7 @@
-import { Column, Entity, PrimaryColumn, CreateDateColumn, JoinColumn, ManyToOne } from 'typeorm';
+import { Column, Entity, PrimaryColumn, CreateDateColumn, JoinColumn, ManyToOne, ManyToMany, JoinTable } from 'typeorm';
 import { v4 as uuidV4 } from 'uuid';
+
+import { Specification } from '@modules/cars/infra/typeorm/entities/Specification';
 
 import { Category } from './Category';
 
@@ -36,7 +38,15 @@ class Car {
   @JoinColumn({ name: 'category_id' })
   category: Category;
 
+  @ManyToMany(() => Specification)
+  specifications: Array<Specification>;
+
   @CreateDateColumn()
+  @JoinTable({
+    name: 'specifications_cars',
+    joinColumns: [{ name: 'car_id' }],
+    inverseJoinColumns: [{ name: 'specification_id' }],
+  })
   created_at: Date;
 
   constructor() {
