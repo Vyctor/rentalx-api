@@ -7,7 +7,7 @@ import { app } from '@shared/infra/http/app';
 
 let connection: Connection;
 
-describe('Create Category Controller', () => {
+describe('List Category Controller', () => {
   beforeAll(async () => {
     connection = await createConnection();
 
@@ -27,7 +27,7 @@ describe('Create Category Controller', () => {
     await connection.close();
   });
 
-  it('should be able create a new category', async () => {
+  it('should be able list all categories', async () => {
     const responseToken = await request(app).post('/sessions').send({
       email: 'admin@rentx.com.br',
       password: 'admin',
@@ -35,7 +35,7 @@ describe('Create Category Controller', () => {
 
     const { token } = responseToken.body;
 
-    const response = await request(app)
+    await request(app)
       .post('/categories')
       .send({
         name: 'Sedan',
@@ -45,27 +45,10 @@ describe('Create Category Controller', () => {
         Authorization: `Bearer ${token}`,
       });
 
-    expect(response.status).toBe(201);
-  });
+    const response = await request(app).get('/categories');
 
-  it('should not be able create a new category if existant name', async () => {
-    const responseToken = await request(app).post('/sessions').send({
-      email: 'admin@rentx.com.br',
-      password: 'admin',
-    });
-
-    const { token } = responseToken.body;
-
-    const response = await request(app)
-      .post('/categories')
-      .send({
-        name: 'Sedan',
-        description: 'A Fancy nice ride',
-      })
-      .set({
-        Authorization: `Bearer ${token}`,
-      });
-
-    expect(response.status).toBe(400);
+    expect(response.status).toBe(200);
+    expect(response.body.length).toBe(1);
+    expect(response.body[0]).toHaveProperty('id');
   });
 });
