@@ -1,18 +1,21 @@
 import dayjs from 'dayjs';
 
 import { InMemoryRentalsRepository } from '@modules/rentals/repositories/in-memory/InMemoryRentalsRepository';
+import { DayJsDateProvider } from '@shared/container/providers/DateProvider/implementations/DayJsDateProvider';
 
 import { AppError } from '../../../../shared/errors/AppError';
 import { CreateRentalUseCase } from './CreateRentalUseCase';
 
 let createRentalUseCase: CreateRentalUseCase;
 let inMemoryRentalsRepository: InMemoryRentalsRepository;
+let dateProvider: DayJsDateProvider;
 let expect_return_date: Date;
 
 describe('Create Rental', () => {
   beforeEach(() => {
     inMemoryRentalsRepository = new InMemoryRentalsRepository();
-    createRentalUseCase = new CreateRentalUseCase(inMemoryRentalsRepository);
+    dateProvider = new DayJsDateProvider();
+    createRentalUseCase = new CreateRentalUseCase(inMemoryRentalsRepository, dateProvider);
     expect_return_date = dayjs(new Date()).add(1, 'day').toDate();
   });
 
