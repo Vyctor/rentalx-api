@@ -18,7 +18,9 @@ const importCategoryController = new ImportCategoryController();
 const listCategoriesController = new ListCategoriesController();
 
 categoriesRoutes.post('/', ensureAuthentication, ensureAdmin, createCategoryController.handle);
+
 categoriesRoutes.get('/', listCategoriesController.handle);
+
 categoriesRoutes.post('/import', ensureAuthentication, ensureAdmin, upload.single('file'), importCategoryController.handle);
 
 export { categoriesRoutes };
