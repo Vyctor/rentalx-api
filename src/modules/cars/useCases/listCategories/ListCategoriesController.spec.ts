@@ -17,8 +17,9 @@ describe('List Category Controller', () => {
     const password = await hash('admin', 8);
 
     await connection.query(
-      `INSERT INTO USERS(id, name, email, password, "isAdmin", created_at, driver_license) values('${id}', 'admin', 'admin@rentx.com.br', '${password}', true, 'now()', 'XXXXXXX')
-    `,
+      `INSERT INTO USERS(id, name, email, password, "isAdmin", created_at, driver_license )
+        values('${id}', 'admin', 'admin@rentx.com.br', '${password}', true, 'now()', 'XXXXXX')
+      `,
     );
   });
 
@@ -33,16 +34,16 @@ describe('List Category Controller', () => {
       password: 'admin',
     });
 
-    const { token } = responseToken.body;
+    const { refresh_token } = responseToken.body;
 
-    await request(app)
+    const category = await request(app)
       .post('/categories')
       .send({
         name: 'Sedan',
         description: 'A Fancy nice ride',
       })
       .set({
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${refresh_token}`,
       });
 
     const response = await request(app).get('/categories');

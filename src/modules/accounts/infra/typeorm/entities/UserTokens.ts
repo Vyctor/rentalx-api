@@ -1,8 +1,9 @@
-import { Column, CreateDateColumn, JoinColumn, ManyToOne, PrimaryColumn } from 'typeorm';
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryColumn } from 'typeorm';
 import { v4 as uuidV4 } from 'uuid';
 
 import { User } from '@modules/accounts/infra/typeorm/entities/User';
 
+@Entity('users_tokens')
 class UserTokens {
   @PrimaryColumn()
   id: string;

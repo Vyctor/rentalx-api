@@ -6,6 +6,6 @@ import { DayJsDateProvider } from '@shared/container/providers/DateProvider/impl
 import { IMailProvider } from './MailProvider/IMailProvider';
 import { EtherealMailProvider } from './MailProvider/implementations/EtherealMailProvider';
 
-container.registerSingleton<IDateProvider>('DayJsDateProvider', DayJsDateProvider);
+container.registerSingleton<IDateProvider>('DayjsDateProvider', DayJsDateProvider);
 
 container.registerSingleton<IMailProvider>('EtherealMailProvider', EtherealMailProvider);
