@@ -6,11 +6,7 @@ export class CreateCarImages1628286305879 implements MigrationInterface {
       new Table({
         name: 'cars_image',
         columns: [
-          {
-            name: 'id',
-            type: 'uuid',
-            isPrimary: true,
-          },
+          { name: 'id', type: 'uuid', isPrimary: true },
           {
             name: 'car_id',
             type: 'uuid',
@@ -31,7 +27,7 @@ export class CreateCarImages1628286305879 implements MigrationInterface {
             referencedTableName: 'cars',
             referencedColumnNames: ['id'],
             columnNames: ['car_id'],
-            onDelete: 'SET NULL ',
+            onDelete: 'SET NULL',
             onUpdate: 'SET NULL',
           },
         ],

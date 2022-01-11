@@ -6,10 +6,24 @@ export class CreateCategories1624402507078 implements MigrationInterface {
       new Table({
         name: 'categories',
         columns: [
-          { name: 'id', type: 'uuid', isPrimary: true },
-          { name: 'name', type: 'varchar' },
-          { name: 'description', type: 'varchar' },
-          { name: 'created_at', type: 'timestamp', default: 'now()' },
+          {
+            name: 'id',
+            type: 'uuid',
+            isPrimary: true,
+          },
+          {
+            name: 'name',
+            type: 'varchar',
+          },
+          {
+            name: 'description',
+            type: 'varchar',
+          },
+          {
+            name: 'created_at',
+            type: 'timestamp',
+            default: 'now()',
+          },
         ],
       }),
     );

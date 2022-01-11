@@ -30,10 +30,11 @@ export class CreateSpecificationsCars1628045483612 implements MigrationInterface
         referencedTableName: 'specifications',
         referencedColumnNames: ['id'],
         columnNames: ['specification_id'],
-        onUpdate: 'SET NULL',
         onDelete: 'SET NULL',
+        onUpdate: 'SET NULL',
       }),
     );
+
     await queryRunner.createForeignKey(
       'specifications_cars',
       new TableForeignKey({
@@ -41,15 +42,17 @@ export class CreateSpecificationsCars1628045483612 implements MigrationInterface
         referencedTableName: 'cars',
         referencedColumnNames: ['id'],
         columnNames: ['car_id'],
-        onUpdate: 'SET NULL',
         onDelete: 'SET NULL',
+        onUpdate: 'SET NULL',
       }),
     );
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropForeignKey('specifications_cars', 'FKSpecificationCar');
     await queryRunner.dropForeignKey('specifications_cars', 'FKCarSpecification');
+
+    await queryRunner.dropForeignKey('specifications_cars', 'FKSpecificationCar');
+
     await queryRunner.dropTable('specifications_cars');
   }
 }
