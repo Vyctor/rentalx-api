@@ -1,4 +1,4 @@
 #!/bin/bash
-yarn
+yarn --verbose
 yarn run typeorm migration:run
 yarn run dev
