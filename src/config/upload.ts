@@ -6,17 +6,16 @@ interface IReturn {
   storage: multer.StorageEngine;
 }
 
+const tmpFolder = resolve(__dirname, '..', '..', 'tmp');
+
 export default {
-  upload(folder: string): IReturn {
-    return {
-      storage: multer.diskStorage({
-        destination: resolve(__dirname, '..', '..', folder),
-        filename: (request, file, callback) => {
-          const filehash = crypto.randomBytes(16).toString('hex');
-          const filename = `${filehash}-${file.originalname}`;
-          return callback(null, filename);
-        },
-      }),
-    };
-  },
+  tmpFolder,
+  storage: multer.diskStorage({
+    destination: tmpFolder,
+    filename: (request, file, callback) => {
+      const filehash = crypto.randomBytes(16).toString('hex');
+      const filename = `${filehash}-${file.originalname}`;
+      return callback(null, filename);
+    },
+  }),
 };
