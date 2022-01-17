@@ -3,10 +3,8 @@
     "target": "es5",
     "module": "commonjs",
     "rootDir": "./",
-    "outDir": "./dist",
     "baseUrl": "./src",
-    "strict": false,
-    "noImplicitOverride": true,
+    "outDir": "./dist",
     "paths": {
       "@modules/*": ["modules/*"],
       "@config/*": ["config/*"],
